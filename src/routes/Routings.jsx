@@ -2,8 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import PrivateRoutes from "./PrivateRoutes";
-import SignupPage from "../pages/SignupPage";
-import LoginPage from "../pages/LoginPage";
+import SignupPage from "../pages/auth/SignupPage";
+import LoginPage from "../pages/auth/LoginPage";
+import HomePage from "../pages/home/HomePage";
 
 const Routings = ({ authToken, signToken }) => {
   return (
@@ -12,7 +13,9 @@ const Routings = ({ authToken, signToken }) => {
         <Route exact path="/auth/signup" element={<SignupPage />} />
         <Route exact path="/auth/login" element={<LoginPage />} />
       </Route>
-      <Route element={<PrivateRoutes />}></Route>
+      <Route element={<PrivateRoutes />}>
+        <Route exact path="/" element={<HomePage />} />
+      </Route>
     </Routes>
   );
 };

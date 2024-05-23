@@ -2,8 +2,8 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoutes = () => {
-  const isAuthenticated = true;
-  const isAuthenticatedOnSignup = true;
+  const isAuthenticated = false;
+  const isAuthenticatedOnSignup = false;
 
   return isAuthenticated || isAuthenticatedOnSignup ? (
     <div className="">
