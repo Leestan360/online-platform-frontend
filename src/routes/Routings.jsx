@@ -13,10 +13,10 @@ const Routings = ({ authToken, signToken }) => {
       <Route element={<PublicRoutes />}>
         <Route exact path="/auth/signup" element={<SignupPage />} />
         <Route exact path="/auth/login" element={<LoginPage />} />
-        <Route exact path="/cat-fact/facts" element={<CatFactsPage />} />
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/cat-fact/facts" element={<CatFactsPage />} />
       </Route>
     </Routes>
   );

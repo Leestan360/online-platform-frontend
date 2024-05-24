@@ -32,7 +32,7 @@ function CatFactsPage() {
     {
       field: "text",
       headerName: "Fact",
-      width: 500,
+      width: 700,
     },
     {
       field: "status.verified",
@@ -57,7 +57,7 @@ function CatFactsPage() {
 
   // Show loading state when fetching data
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="py-5 px-10">Loading...</div>;
   }
 
   // Display error if it occurs during fetching data
@@ -68,7 +68,7 @@ function CatFactsPage() {
   return (
     <div className="py-5 px-10">
       <ToastContainer />
-      <h1 className="text-xl mb-5">Cat Facts</h1>
+      <h1 className="text-xl mb-5 font-[500]">Cat Facts</h1>
       <Table data={data} columns={columns} />
     </div>
   );
