@@ -5,6 +5,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import SignupPage from "../pages/auth/SignupPage";
 import LoginPage from "../pages/auth/LoginPage";
 import HomePage from "../pages/home/HomePage";
+import CatFactsPage from "../pages/data/CatFactsPage";
 
 const Routings = ({ authToken, signToken }) => {
   return (
@@ -12,6 +13,7 @@ const Routings = ({ authToken, signToken }) => {
       <Route element={<PublicRoutes />}>
         <Route exact path="/auth/signup" element={<SignupPage />} />
         <Route exact path="/auth/login" element={<LoginPage />} />
+        <Route exact path="/cat-fact/facts" element={<CatFactsPage />} />
       </Route>
       <Route element={<PrivateRoutes />}>
         <Route exact path="/" element={<HomePage />} />

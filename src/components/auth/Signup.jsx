@@ -43,25 +43,13 @@ function Signup() {
       }
     } catch (error) {
       // Display signup error messages
-      if (error.response) {
-        if (error.response.status === 422) {
-          const errors = error.response.data.errors;
-          if (errors && errors.length > 0) {
-            errors.forEach((err) => {
-              toast.error(err);
-            });
-          } else {
-            toast.error("An error occurred. Please try again.");
-          }
-        } else {
-          // Display other error outside status 422
-          toast.error(
-            error.response.data.message ||
-              "An error occurred. Please try again."
-          );
-        }
+      const errors = error.response.data.errors;
+      if (errors && errors.length > 0) {
+        errors.forEach((err) => {
+          toast.error(err);
+        });
       } else {
-        toast.error("Network error. Please try again.");
+        toast.error("An error occurred. Please try again.");
       }
     } finally {
       setSubmitting(false);
