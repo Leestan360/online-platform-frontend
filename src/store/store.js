@@ -4,6 +4,12 @@ import { persist } from "zustand/middleware";
 import config from "../config";
 import { toast } from "react-toastify";
 
+// Show success message and navigate
+const showSuccessToast = (message, callback) => {
+  toast.success(message);
+  setTimeout(() => callback(), 2000);
+};
+
 const useAuthStore = create(
   persist(
     (set) => ({
@@ -39,11 +45,9 @@ const useAuthStore = create(
           // Set user
           set({ user: userData.data });
 
-          // Display login success message
-          toast.success(response.data.message);
+          // Show success message and navigate
+          showSuccessToast(response.data.message, () => navigate("/"));
 
-          // Navigate to homepage
-          navigate("/");
         } catch (error) {
           // Display login error message
           const errorMessage = error.response?.data?.message || "An error occurred. Please try again.";
@@ -89,10 +93,9 @@ const useAuthStore = create(
 
           // Set user
           set({ user: userData.data });
-    
-          // Display signup success message and navigate to home page
-          toast.success(response.data.message || "Signup successful!");
-          navigate("/");
+
+          // Show success message and navigate
+          showSuccessToast(response.data.message, () => navigate("/"));
           
         } catch (error) {
           // Display signup error messages
