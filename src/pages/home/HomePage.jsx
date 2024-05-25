@@ -1,9 +1,9 @@
 import Home from "../../components/home/Home";
 
-function HomePage() {
+function HomePage({ user }) {
   return (
     <div>
-      <Home />
+      <Home user={user} />
     </div>
   );
 }

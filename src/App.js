@@ -1,14 +1,12 @@
 import Routings from "./routes/Routings";
+import useAuthStore from "./store/store";
 
 function App() {
-  const authToken = "a"
-  const signToken = "b"
-  
+  const user = useAuthStore((state) => state.user);
+
   return (
     <div className="">
-        <Routings
-          authToken={authToken}
-          signToken={signToken}
+        <Routings user={user}
         />
     </div>
   );

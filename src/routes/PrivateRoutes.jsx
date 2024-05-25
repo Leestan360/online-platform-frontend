@@ -1,11 +1,11 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import useAuthStore from "../store/store";
 
 const PrivateRoutes = () => {
-  const isAuthenticated = false;
-  const isAuthenticatedOnSignup = false;
+  const isAuthenticated = useAuthStore((state) => state.token);
 
-  return isAuthenticated || isAuthenticatedOnSignup ? (
+  return isAuthenticated ? (
     <div className="">
       <Outlet />
     </div>

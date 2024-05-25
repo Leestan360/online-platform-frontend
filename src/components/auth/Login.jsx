@@ -1,48 +1,20 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { LoginInitials, loginValuesValidation } from "../../models/login";
-import axios from "axios";
-import config from "../../config";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/store";
 
 // Login initial values
 const loginInitialValues = new LoginInitials();
 
 function Login() {
   const navigate = useNavigate()
+  const login = useAuthStore((state) => state.login);
 
   // Handle login
   const handleLogin = async (values, { setSubmitting }) => {
-    setSubmitting(true);
-
-    try {
-      const payload = {
-        user: {
-          email: values.email,
-          password: values.password,
-        },
-      };
-
-      const response = await axios.post(`${config.apiBaseUrl}/login`, payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Display login success message
-      toast.success(response.data.message);
-
-      // Navigate to homepage
-      navigate("/")
-    } catch (error) {
-      // Display login error message
-      toast.error(
-        error.response?.data?.message || "An error occurred. Please try again."
-      );
-    } finally {
-      setSubmitting(false);
-    }
+    await login(values, { setSubmitting, navigate });
   };
 
   return (

@@ -1,59 +1,20 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import axios from "axios";
-import config from "../../config";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { SignupInitials, signupValuesValidation } from "../../models/signup";
+import useAuthStore from "../../store/store";
 
 // Login initial values
 const signupInitialValues = new SignupInitials();
 
 function Signup() {
   const navigate = useNavigate();
+  const signup = useAuthStore((state) => state.signup)
 
   // Handle signup
   const handleSignup = async (values, { setSubmitting }) => {
-    setSubmitting(true);
-
-    try {
-      const payload = {
-        user: {
-          username: values.email,
-          email: values.email,
-          password: values.password,
-          password_confirmation: values.passwordConfirmation,
-        },
-      };
-
-      const response = await axios.post(
-        `${config.apiBaseUrl}/signup`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      // Display signup success message and navigate to home page
-      if (response.status === 201) {
-        toast.success(response.data.message || "Signup successful!");
-        navigate("/");
-      }
-    } catch (error) {
-      // Display signup error messages
-      const errors = error.response.data.errors;
-      if (errors && errors.length > 0) {
-        errors.forEach((err) => {
-          toast.error(err);
-        });
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
-    } finally {
-      setSubmitting(false);
-    }
+    await signup(values, { setSubmitting, navigate });
   };
 
   return (

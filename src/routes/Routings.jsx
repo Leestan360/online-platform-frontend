@@ -7,7 +7,7 @@ import LoginPage from "../pages/auth/LoginPage";
 import HomePage from "../pages/home/HomePage";
 import CatFactsPage from "../pages/data/CatFactsPage";
 
-const Routings = ({ authToken, signToken }) => {
+const Routings = ({ user }) => {
   return (
     <Routes>
       <Route element={<PublicRoutes />}>
@@ -15,7 +15,7 @@ const Routings = ({ authToken, signToken }) => {
         <Route exact path="/auth/login" element={<LoginPage />} />
       </Route>
       <Route element={<PrivateRoutes />}>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage user={user} />} />
         <Route exact path="/cat-fact/facts" element={<CatFactsPage />} />
       </Route>
     </Routes>
