@@ -58,7 +58,7 @@ const useAuthStore = create(
         try {
           const payload = {
             user: {
-              username: values.email,
+              username: values.username,
               email: values.email,
               password: values.password,
               password_confirmation: values.passwordConfirmation,
