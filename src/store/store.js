@@ -75,7 +75,7 @@ const useAuthStore = create(
             }
           );
 
-          // Set token and user
+          // Set token 
           const { jwt: token } = response.data;
           set({ token });
 
@@ -92,7 +92,7 @@ const useAuthStore = create(
     
           // Display signup success message and navigate to home page
           toast.success(response.data.message || "Signup successful!");
-           navigate("/");
+          navigate("/");
           
         } catch (error) {
           // Display signup error messages

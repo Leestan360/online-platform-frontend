@@ -1,18 +1,35 @@
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../store/store";
 
 function Home({ user }) {
   const navigate = useNavigate();
-  console.log(user)
+  const logout = useAuthStore((state) => state.logout);
 
+  // Handle fetch data
   const handleFetchData = () => {
     navigate("/cat-fact/facts");
   };
+
+  // Handle Logout
+  const handleLogout = () => {
+    logout();
+    navigate("/auth/login");
+  };
+
   return (
     <div className="py-5 px-10 space-y-5">
-      <h3>Welcome {user?.username}</h3>
+      <div className="flex justify-between">
+        <h3 className="text-xl">Welcome {user?.user?.username}</h3>
+        <button
+          onClick={handleLogout}
+          className="border rounded-[5px] px-3 py-1 text-white border-primary bg-primary hover:border-secondary hover:bg-secondary shadow-sm shadow-primary hover:shadow-secondary"
+        >
+          Logout
+        </button>
+      </div>
       <button
         onClick={handleFetchData}
-        className="border rounded-[5px] px-2 py-1 text-white border-primary bg-primary hover:border-secondary hover:bg-secondary shadow-sm shadow-primary hover:shadow-secondary"
+        className="border rounded-[5px] px-3 py-1 text-white border-primary bg-primary hover:border-secondary hover:bg-secondary shadow-sm shadow-primary hover:shadow-secondary"
       >
         Fetch Data...
       </button>
