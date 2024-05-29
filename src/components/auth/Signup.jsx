@@ -20,7 +20,7 @@ function Signup() {
   return (
     <div className="flex justify-center items-center h-screen ">
       <ToastContainer />
-      <div className="border border-tertiary rounded-lg py-7 px-6 w-[22%] shadow-lg shadow-secondary ">
+      <div className="border border-tertiary rounded-lg py-7 px-6 xxs:w-[90%] xsm:w-[70%] sm:w-[60%] md:w-[45%] lg:w-[35%] xl:w-[30%] 2xl:w-[22%] shadow-lg shadow-secondary ">
         <div>
           <p className="font-[500] text-2xl">Welcome!</p>
           <p className="text-secondary font-[430]">
